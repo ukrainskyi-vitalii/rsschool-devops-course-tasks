@@ -57,3 +57,8 @@ resource "aws_iam_role_policy_attachment" "GithubActionsRole_iam" {
   role       = aws_iam_role.GithubActionsRole.name
   policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
 }
+
+resource "aws_iam_role_policy_attachment" "GithubActionsRole_dynamodb" {
+  role       = aws_iam_role.GithubActionsRole.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
