@@ -8,8 +8,8 @@ on:
 
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
-  TRF_GITHUB_ACTIONS_ROLE_NAME: ${{ vars.GITHUB_ACTIONS_ROLE_NAME }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  AWS_GITHUB_ACTIONS_ROLE_NAME: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_NAME }}
 
 jobs:
   terraform-check:
@@ -40,7 +40,7 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.TRF_GITHUB_ACTIONS_ROLE_NAME }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_GITHUB_ACTIONS_ROLE_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Set up Terraform
@@ -67,7 +67,7 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.TRF_GITHUB_ACTIONS_ROLE_NAME }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_GITHUB_ACTIONS_ROLE_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Set up Terraform
