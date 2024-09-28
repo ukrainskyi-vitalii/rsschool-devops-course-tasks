@@ -6,6 +6,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_GITHUB_ACTIONS_ROLE_NAME: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_NAME }}
