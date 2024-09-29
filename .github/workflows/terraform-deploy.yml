@@ -2,9 +2,10 @@ name: Terraform Deployment
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+    types: [opened, reopened, synchronize]
+  # push: // uncomment if you need to run terraform apply only on merge event
+    # branches:
+      # - main
 
 permissions:
   id-token: write
