@@ -12,6 +12,7 @@ module "security" {
   public_subnet_id_2  = module.vpc.public_subnet_2_id
   private_subnet_id_1 = module.vpc.private_subnet_1_id
   private_subnet_id_2 = module.vpc.private_subnet_2_id
+  vpc_cidr            = module.vpc.aws_vpc_cidr
 }
 
 module "nat_gateway" {

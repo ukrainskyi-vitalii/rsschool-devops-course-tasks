@@ -29,6 +29,16 @@ resource "aws_network_acl" "public_acl" {
     to_port    = 22
   }
 
+  # Allow inbound ephemeral ports
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 130
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
+  }
+
   // Allow ping
   ingress {
     protocol   = "icmp"
@@ -80,6 +90,16 @@ resource "aws_network_acl" "private_acl" {
     cidr_block = var.vpc_cidr
     from_port  = 0
     to_port    = 0
+  }
+
+  # Allow inbound ephemeral ports
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 110
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
   }
 
   # Outbound Rules
