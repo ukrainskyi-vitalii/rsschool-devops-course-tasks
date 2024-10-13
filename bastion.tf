@@ -7,6 +7,6 @@ resource "aws_instance" "bastion" {
   security_groups             = [module.security.public_sg_id]
 
   tags = {
-    Name = "Bastion Host"
+    Name = "rs_school-bastion-host"
   }
 }

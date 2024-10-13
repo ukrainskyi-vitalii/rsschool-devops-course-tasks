@@ -27,3 +27,15 @@ output "vpc_sg_id" {
   description = "VPC security group ID"
   value       = aws_security_group.vpc_sg.id
 }
+
+output "private_subnet_1_cidr" {
+  value = aws_subnet.private_subnet_1.cidr_block
+}
+
+output "private_subnet_2_cidr" {
+  value = aws_subnet.private_subnet_2.cidr_block
+}
+
+output "aws_vpc_cidr" {
+  value = aws_vpc.rs_school_vpc.cidr_block
+}

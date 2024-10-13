@@ -7,7 +7,7 @@ resource "aws_instance" "public_instance_1" {
   key_name                    = var.ssh_key_name
 
   tags = {
-    Name = "public-instance-1"
+    Name = "rs_school-public-instance-1"
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_instance" "public_instance_2" {
   key_name                    = var.ssh_key_name
 
   tags = {
-    Name = "public-instance-2"
+    Name = "rs_school-public-instance-2"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_instance" "private_instance_1" {
   key_name        = var.ssh_key_name
 
   tags = {
-    Name = "private-instance-1"
+    Name = "rs_school-private-instance-1"
   }
 }
 
@@ -44,6 +44,6 @@ resource "aws_instance" "private_instance_2" {
   key_name        = var.ssh_key_name
 
   tags = {
-    Name = "private-instance-2"
+    Name = "rs_school-private-instance-2"
   }
 }
