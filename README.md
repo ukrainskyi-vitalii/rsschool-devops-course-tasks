@@ -1,5 +1,43 @@
 # DevOps Course. Terraform Infrastructure for AWS with GitHub Actions
 
+# Task 2: Basic Infrastructure Configuration
+
+## Directory Structure:
+- modules/iam/: IAM roles and policies management.
+- modules/security/: Security Groups configuration.
+- ./nacl/: Network ACLs for subnet traffic control.
+- ./nat_gateway/: NAT Gateway for private subnets' Internet access.
+- ./vpc/: VPC setup including subnets, route tables, and internet gateway.
+- bastion.tf: Bastion Host for secure SSH access to private subnets.
+- ec2.tf: EC2 instances in public and private subnets.
+
+## Key Resources:
+- VPC: Creates the network for the infrastructure.
+- Security Groups: Defines inbound and outbound traffic rules for EC2 instances.
+- NACL: Controls traffic at the subnet level.
+- NAT Gateway: Enables outbound Internet access for instances in private subnets.
+- Bastion Host: Secure access to private instances via SSH.
+- EC2 Instances: Virtual machines running in public and private subnet
+
+# Usage:
+### Initialize Terraform:
+```bash
+terraform init
+```
+### Check the plan:
+```bash
+terraform plan
+```
+### Apply changes:
+```bash
+terraform apply
+```
+### Destroy infrastructure:
+```bash
+terraform destroy
+```
+
+# TASK 1 Task 1: AWS Account Configuration
 ## Overview
 
 This project sets up AWS infrastructure using Terraform and automates its management via GitHub Actions. The primary resources include:
