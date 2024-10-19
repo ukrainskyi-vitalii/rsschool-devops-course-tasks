@@ -48,6 +48,51 @@ ssh -i "rs-school.pem" -J ec2-user@<bastion-public-ip> ec2-user@<worker-private-
 sudo curl -sfL https://get.k3s.io | K3S_URL=https://<master-private-ip>:6443 K3S_TOKEN=<token> sh -
 ```
 
+## Deployment Process
+
+### 1. Set Up an SSH Tunnel to Access the Cluster
+
+To interact with the Kubernetes cluster from your local machine, you need to set up an SSH tunnel through the **Bastion Host** to forward traffic to the **k3s_master** node.
+
+#### 1. Open a terminal on your local machine and run the following command to establish an SSH tunnel:
+```bash
+ssh -i "rs-school.pem" -L 6443:<master-private-ip>:6443 ec2-user@<bastion-public-ip>
+```
+- This command forwards your local machine's port 6443 to the Kubernetes API server running on the k3s_master node.
+- Keep this terminal open and do not close the SSH connection, as it keeps the tunnel active.
+
+#### 2. Deploy a Simple Workload on the Cluster
+
+Once the SSH tunnel is established, you can deploy a workload to the cluster using kubectl from your local machine.
+
+2.1 In a new terminal window (while keeping the SSH tunnel open), run the following command to deploy a simple Pod to the cluster:
+   
+```bash
+kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
+```
+This command applies a simple pod configuration to the cluster.
+
+2.2 Check the status of the Pod by running:
+```bash
+kubectl get pods
+```
+You should see output similar to this:
+```bash
+NAME         READY   STATUS    RESTARTS   AGE
+simple-pod   1/1     Running   0          1m
+``` 
+
+2.3 Verifying Cluster Node Status
+```bash
+kubectl get nodes
+```
+You should see something similar to:
+```bash
+NAME           STATUS   ROLES                  AGE   VERSION
+ip-10-0-1-10   Ready    control-plane,master   10m   v1.30.5+k3s1
+ip-10-0-2-20   Ready    <none>                 10m   v1.30.5+k3s1
+```
+
 # Task 2: Basic Infrastructure Configuration
 
 ## Directory Structure:
