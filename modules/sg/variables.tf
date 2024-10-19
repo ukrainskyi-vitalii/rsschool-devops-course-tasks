@@ -8,10 +8,10 @@ variable "public_subnet_id_1" {
   type        = string
 }
 
-variable "public_subnet_id_2" {
-  description = "Public subnet ID"
-  type        = string
-}
+#variable "public_subnet_id_2" {
+#  description = "Public subnet ID"
+#  type        = string
+#}
 
 variable "private_subnet_id_1" {
   description = "Private subnet ID"
@@ -28,10 +28,10 @@ variable "public_subnet_1_cidr" {
   default     = "10.0.1.0/24"
 }
 
-variable "public_subnet_2_cidr" {
-  description = "CIDR Block for Public Subnet 2"
-  default     = "10.0.2.0/24"
-}
+#variable "public_subnet_2_cidr" {
+#  description = "CIDR Block for Public Subnet 2"
+#  default     = "10.0.2.0/24"
+#}
 
 variable "private_subnet_1_cidr" {
   description = "CIDR Block for Private Subnet 1"

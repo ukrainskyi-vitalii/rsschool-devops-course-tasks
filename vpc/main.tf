@@ -3,36 +3,37 @@ resource "aws_vpc" "rs_school_vpc" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
-  tags = {
+  tags                 = {
     Name = "rs_school-vpc"
   }
 }
 
 # Public subnets
 resource "aws_subnet" "public_subnet_1" {
-  vpc_id            = aws_vpc.rs_school_vpc.id
-  cidr_block        = var.public_subnet_1_cidr
-  availability_zone = var.availability_zones[0]
-  tags = {
+  vpc_id                  = aws_vpc.rs_school_vpc.id
+  cidr_block              = var.public_subnet_1_cidr
+  map_public_ip_on_launch = true
+  availability_zone       = var.availability_zones[0]
+  tags                    = {
     Name = "public-terraform-rs_school-subnet-1"
   }
 }
 
-resource "aws_subnet" "public_subnet_2" {
-  vpc_id            = aws_vpc.rs_school_vpc.id
-  cidr_block        = var.public_subnet_2_cidr
-  availability_zone = var.availability_zones[1]
-  tags = {
-    Name = "public-terraform-rs_school-subnet-2"
-  }
-}
+#resource "aws_subnet" "public_subnet_2" {
+#  vpc_id            = aws_vpc.rs_school_vpc.id
+#  cidr_block        = var.public_subnet_2_cidr
+#  availability_zone = var.availability_zones[1]
+#  tags = {
+#    Name = "public-terraform-rs_school-subnet-2"
+#  }
+#}
 
 # Private subnets
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.rs_school_vpc.id
   cidr_block        = var.private_subnet_1_cidr
   availability_zone = var.availability_zones[0]
-  tags = {
+  tags              = {
     Name = "private-terraform-rs_school-subnet-1"
   }
 }
@@ -41,14 +42,14 @@ resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.rs_school_vpc.id
   cidr_block        = var.private_subnet_2_cidr
   availability_zone = var.availability_zones[1]
-  tags = {
+  tags              = {
     Name = "private-terraform-rs_school-subnet-2"
   }
 }
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.rs_school_vpc.id
-  tags = {
+  tags   = {
     Name = "rs_school-igw"
   }
 }
@@ -107,7 +108,7 @@ resource "aws_route_table_association" "public_rt_assoc_1" {
   route_table_id = aws_route_table.public_rt.id
 }
 
-resource "aws_route_table_association" "public_rt_assoc_2" {
-  subnet_id      = aws_subnet.public_subnet_2.id
-  route_table_id = aws_route_table.public_rt.id
-}
+#resource "aws_route_table_association" "public_rt_assoc_2" {
+#  subnet_id      = aws_subnet.public_subnet_2.id
+#  route_table_id = aws_route_table.public_rt.id
+#}
