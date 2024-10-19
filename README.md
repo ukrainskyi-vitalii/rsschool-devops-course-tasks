@@ -1,5 +1,53 @@
 # DevOps Course. Terraform Infrastructure for AWS with GitHub Actions
 
+# Task 3: K8s Cluster Configuration and Creation
+
+## Kubernetes Cluster Setup with k3s on AWS
+
+## Overview
+This README outlines the process of manually setting up a Kubernetes (k3s) cluster on AWS using Terraform to deploy the required infrastructure and SSH tunneling to install and manage the cluster components. The cluster consists of a master node (Control Plane) and a worker node, both running on EC2 instances. Access to the cluster is provided through a Bastion Host.
+
+## Steps
+
+### 1. Deploy Required Infrastructure
+The infrastructure, including VPC, subnets, security groups, and EC2 instances (Bastion Host, k3s_master, and k3s_worker), is deployed using Terraform.
+
+To deploy the infrastructure, run the following commands:
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+This will provision the necessary resources on AWS.
+
+### 2. Install k3s on the Master Node (Control Plane)
+Once the infrastructure is deployed, connect to the k3s_master node via the Bastion Host and install k3s.
+
+2.1 SSH into the **k3s_master** directly via the Bastion Host:
+```bash
+ssh -i "rs-school.pem" -J ec2-user@<bastion-public-ip> ec2-user@<master-private-ip>
+```
+2.2 Install k3s on the k3s_master to set up the Control Plane:
+```bash
+curl -sfL https://get.k3s.io | sh -
+```
+
+2.3 Retrieve Token to Join Worker Node to the Cluster:
+```bash
+sudo cat /var/lib/rancher/k3s/server/node-token
+```
+
+### 3 Join the Worker Node to the Cluster:
+3.1 SSH into the k3s_worker directly via the Bastion Host:
+```bash
+ssh -i "rs-school.pem" -J ec2-user@<bastion-public-ip> ec2-user@<worker-private-ip>
+```
+3.2 Install k3s on the k3s_worker to join it to the cluster:
+```bash     
+sudo curl -sfL https://get.k3s.io | K3S_URL=https://<master-private-ip>:6443 K3S_TOKEN=<token> sh -
+```
+
 # Task 2: Basic Infrastructure Configuration
 
 ## Directory Structure:
