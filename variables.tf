@@ -1,9 +1,10 @@
-variable "aws_account_id" {
-  description = "AWS Account ID"
-  type        = string
+# ec2
+variable "ami_id" {
+  description = "AMI ID for eu-west-1"
+  default     = "ami-054a53dca63de757b"
 }
 
-variable "github_repo_name" {
-  description = "GitHub Repository Name (owner/repo)"
-  type        = string
+variable "ssh_key_name" {
+  description = "SSH key name"
+  default     = "rs-school"
 }
